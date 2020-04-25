@@ -163,7 +163,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $tag2 = Tag::create([
-            'name' => 'Javascript'
+            'name' => 'VueJS'
         ]);
 
         foreach ($this->videos as $video){

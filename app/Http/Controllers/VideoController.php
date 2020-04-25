@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Video;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Video as VideoResource;
 
 class VideoController extends Controller
 {
@@ -15,9 +16,9 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::all();
+        $videos = Video::with('tags')->get();
 
-        return response(['data' => $videos], Response::HTTP_OK);
+        return response(['data' => VideoResource::collection($videos)], Response::HTTP_OK);
     }
 
     /**
@@ -49,7 +50,7 @@ class VideoController extends Controller
      */
     public function show(Video $video)
     {
-        return response(['data' => $video], Response::HTTP_OK);
+        return response(['data' => new VideoResource($video)], Response::HTTP_OK);
     }
 
     /**
