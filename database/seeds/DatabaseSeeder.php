@@ -1,6 +1,8 @@
 <?php
 
 use App\Course;
+use App\Tag;
+use App\Video;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -156,8 +158,17 @@ class DatabaseSeeder extends Seeder
             Course::create($course);
         }
 
+        $tag1 = Tag::create([
+            'name' => 'Javascript'
+        ]);
+
+        $tag2 = Tag::create([
+            'name' => 'Javascript'
+        ]);
+
         foreach ($this->videos as $video){
-            \App\Video::create($video);
+            $video = Video::create($video);
+            $video->tags()->attach([$tag1->id, $tag2->id]);
         }
     }
 }

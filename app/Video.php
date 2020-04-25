@@ -15,11 +15,11 @@ class Video extends Model
 
     public function tags()
     {
-        return $this->hasMany(Tag::class);
+        return $this->belongsToMany(Tag::class);
     }
 
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->belongs(User::class);
     }
 }
